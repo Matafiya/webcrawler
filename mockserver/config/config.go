@@ -7,8 +7,8 @@ var (
 	// 所以增加ServerAddress配置，所有的链接都使用形式：
 	// http://<ServerAddress>/mock/album.zhenai.com/<相对路径>
 	// 若将服务器部署在云，我们需要把这里替换成外网ip/域名:8080
-	ServerAddress = "mockserver.onrender.com:443"
+	ServerAddress = "mockserver.onrender.com:8080"
 
 	// ListenAddress configures where the server listens at.
-	ListenAddress = ":443"
+	ListenAddress = ":8080"
 )
