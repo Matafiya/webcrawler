@@ -1,30 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net/http"
+	"github.com/Matafiya/webcrawler/crawler/engine"
+	"github.com/Matafiya/webcrawler/crawler/zhenai/parser"
 )
 
 func main() {
-	resp, err := http.Get("http://127.0.0.1:8080/mock/www.zhenai.com/zhenghun")
-
-	if err != nil {
-		panic((err))
-	}
-
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		fmt.Println("Error: status code",
-			resp.StatusCode)
-		return
-	}
-	all, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Printf("%s\n", all)
+	engine.Run(engine.Request{
+		URL:        "http://127.0.0.1:8080/mock/www.zhenai.com/zhenghun",
+		ParserFunc: parser.ParseCityList,
+	})
 
 }
