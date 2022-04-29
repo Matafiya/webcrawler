@@ -13,7 +13,9 @@ type ConcurrentEngine struct {
 
 type Scheduler interface {
 	Submit(Request)
-	ConfigureMasterWorkerChan(chan Request)
+	WorkerReady(chan Request)
+	Run()
+	WorkerChan() chan Request
 }
 
 func (e *ConcurrentEngine) Run(seeds ...Request) {
