@@ -44,9 +44,10 @@ func (e *ConcurrentEngine) Run(seeds ...Request) {
 	}
 }
 
-func createWork(in chan Request, out chan ParseResult) {
+func createWork(in chan Request, out chan ParseResult, s Scheduler) {
 	go func() {
 		for {
+			s.WorkerReady(in)
 			request := <-in
 			result, err := worker(request)
 
