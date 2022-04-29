@@ -13,7 +13,7 @@ func main() {
 			ParserFunc: parser.ParseCityList,
 		})
 	*/
-	e := engine.ConcurrentEngine{Scheduler: &scheduler.SimpleScheduler{},
+	e := engine.ConcurrentEngine{Scheduler: &scheduler.QueuedScheduler{},
 		WorkCount: 100}
 	e.Run(engine.Request{
 		URL:        "http://127.0.0.1:8080/mock/www.zhenai.com/zhenghun",
