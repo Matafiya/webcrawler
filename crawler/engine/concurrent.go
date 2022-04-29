@@ -20,11 +20,10 @@ type Scheduler interface {
 
 func (e *ConcurrentEngine) Run(seeds ...Request) {
 
-	in := make(chan Request)
 	out := make(chan ParseResult)
-	e.Scheduler.ConfigureMasterWorkerChan(in)
+
 	for i := 0; i < e.WorkCount; i++ {
-		createWork(in, out)
+		createWork(e.Scheduler.WorkerChan(), out, e.Scheduler)
 	}
 
 	for _, r := range seeds {
